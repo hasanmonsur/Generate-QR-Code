@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Generate QR Code";
+}
+
+<h2>Generate QR Code</h2>
+
+<form method="get" asp-controller="QRCode" asp-action="GenerateQRCode">
+    <div class="form-group">
+        <label for="text">Enter text for QR Code:</label>
+        <input type="text" name="text" class="form-control" id="text" placeholder="Enter text or URL" />
+    </div>
+    <button type="submit" class="btn btn-primary">Generate QR Code</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Context.Request.Query["text"]))
+{
+    <h3>Your QR Code:</h3>
+    <img src="/QRCode/GenerateQRCode?text=@Context.Request.Query["text"]" alt="QR Code" />
+}
